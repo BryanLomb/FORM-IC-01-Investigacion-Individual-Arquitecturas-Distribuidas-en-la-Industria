@@ -1,0 +1,98 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\addbibresource{referencias.bib}
+\DefineBibliographyStrings{spanish}{artno = {art\adddot}}
+
+\newcommand{\estudiante}{[Nombres y apellidos]}
+\newcommand{\institucion}{[Institución]}
+\newcommand{\curso}{[Asignatura y paralelo]}
+\newcommand{\docente}{[Docente]}
+\newcommand{\pendiente}[1]{\textit{[Pendiente: #1]}}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \centering
+  {\Large \institucion\par}
+  \vfill
+  {\large FORM-IC-01\par}
+  \medskip
+  {\LARGE\bfseries Del monolito a los microservicios: el caso de Allegro\par}
+  \vfill
+  {\large \estudiante\par
+  \curso\par
+  \docente\par}
+  \vfill
+  {\large Noviembre de 2026\par}
+  \medskip
+  {\small Borrador de trabajo --- no entregar\par}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+
+% Reemplazar las notas de trabajo por un análisis de autoría propia,
+% conservando la cita junto al dato o la afirmación que respalda.
+\section*{Análisis del caso}
+
+\paragraph{1. Caso y escala.}
+Notas: plataforma de comercio electrónico de Europa Central;
+20 millones de usuarios y más de 300 millones de ofertas
+\cite{kosmulski2024allegro}. % Background
+Más de mil servicios, según la retrospectiva de 2024
+\cite{kosmulski2024allegro}. % One size does not fit all
+
+\paragraph{2. Arquitectura anterior y motivo del cambio.}
+Notas: monolito PHP, una base de datos central, conflictos de integración y
+despliegues mayormente manuales. Rubicon buscó acelerar la entrega
+\cite{kosmulski2024allegro}. % Background; Rubicon Rises
+Paso intermedio: la plataforma SOA en PHP aún tenía un frontend compartido
+y obligaba a sincronizar lanzamientos
+\cite{ignasiak2015architecture}. % Switching from the old platform to the new one
+
+\paragraph{3. Beneficios.}
+Notas: ciclos de lanzamiento independientes por servicio
+\cite{ignasiak2015architecture}. % Rubikon
+Crear un servicio pasó de una o dos semanas a minutos; es un dato de aprovisionamiento,
+no del tiempo de entrega de una funcionalidad
+\cite{kosmulski2024allegro}. % Takeaways
+
+\paragraph{4. Desafío y respuesta.}
+Notas: separar los datos de la base SQL central exigió remodelar datos y operaciones
+transaccionales. Ejemplo: un servicio cambió de Cassandra a MongoDB en un sprint de
+dos semanas, por sus patrones de acceso y sin cambiar su API
+\cite{kosmulski2024allegro}. % No-ing SQL
+Contraste académico: cambios técnicos y organizativos iterativos
+\cite{michaelayas2023migration}; % Sección 1
+problemas de diseño y gestión de servicios observados en Stack Overflow
+\cite{wu2022microservices}. % Secciones I y IV
+Ejemplo posterior, si aporta al argumento: Allegro trasladó funciones de red
+de las bibliotecas a una malla con Envoy mediante adopción gradual
+\cite{jedrzejczyk2020mesh}. % The why; The status
+
+\paragraph{5. Aplicación al PFC.}
+\pendiente{decisión que adoptaría, qué no copiaría y por qué.}
+
+\paragraph{Ejemplo de primera mano.}
+\pendiente{identificar el sistema, cómo lo conoces y qué evidencia observaste de que sus servicios se pueden desplegar por separado.}
+
+\paragraph{Declaración de uso de IA.}
+Se utilizó IA para organizar notas con citas, contrastar datos bibliográficos
+y preparar la plantilla de LaTeX. Revisar y actualizar esta declaración antes de entregar.
+
+\begin{center}
+  \IfFileExists{evidencias/allegro-anotada.png}{%
+    \includegraphics[width=\linewidth,height=3.2cm,keepaspectratio]{evidencias/allegro-anotada.png}\par
+    {\small Captura anotada de la fuente principal \cite{kosmulski2024allegro}.}%
+  }{%
+    \pendiente{incorporar la captura anotada personalmente de la fuente principal \cite{kosmulski2024allegro}.}%
+  }
+\end{center}
+
+\clearpage
+\printbibliography[title={Referencias}]
+\end{document}
