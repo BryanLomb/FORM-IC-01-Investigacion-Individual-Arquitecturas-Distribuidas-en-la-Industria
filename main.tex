@@ -9,10 +9,10 @@
 \addbibresource{referencias.bib}
 \DefineBibliographyStrings{spanish}{artno = {art\adddot}}
 
-\newcommand{\estudiante}{[Nombres y apellidos]}
-\newcommand{\institucion}{[Institución]}
-\newcommand{\curso}{[Asignatura y paralelo]}
-\newcommand{\docente}{[Docente]}
+\newcommand{\estudiante}{Bryan Humberto Lombeida Escaleras}
+\newcommand{\institucion}{Universidad Tecnica Estatal de Quevedo}
+\newcommand{\curso}{Aplicaciones Distribuidas 7mo Semestre}
+\newcommand{\docente}{Gleiston Guerrero}
 \newcommand{\pendiente}[1]{\textit{[Pendiente: #1]}}
 
 \begin{document}
@@ -31,48 +31,46 @@
   \vfill
   {\large Noviembre de 2026\par}
   \medskip
-  {\small Borrador de trabajo --- no entregar\par}
 \end{titlepage}
 \hypersetup{pageanchor=true}
 
-% Reemplazar las notas de trabajo por un análisis de autoría propia,
+% Revisar y adaptar el borrador para que el análisis final sea de autoría propia,
 % conservando la cita junto al dato o la afirmación que respalda.
 \section*{Análisis del caso}
 
 \paragraph{1. Caso y escala.}
-Notas: plataforma de comercio electrónico de Europa Central;
-20 millones de usuarios y más de 300 millones de ofertas
-\cite{kosmulski2024allegro}. % Background
-Más de mil servicios, según la retrospectiva de 2024
-\cite{kosmulski2024allegro}. % One size does not fit all
+Allegro opera una plataforma de comercio electrónico en Europa Central. En su
+retrospectiva de 2024, la empresa reportó 20 millones de usuarios, más de 300
+millones de ofertas y más de mil servicios \cite{kosmulski2024allegro}.
+% Background; One size does not fit all
 
 \paragraph{2. Arquitectura anterior y motivo del cambio.}
-Notas: monolito PHP, una base de datos central, conflictos de integración y
-despliegues mayormente manuales. Rubicon buscó acelerar la entrega
-\cite{kosmulski2024allegro}. % Background; Rubicon Rises
-Paso intermedio: la plataforma SOA en PHP aún tenía un frontend compartido
-y obligaba a sincronizar lanzamientos
+El sistema original era un monolito PHP con una base de datos central. Integrar
+cambios provocaba conflictos y los despliegues eran mayormente manuales
+\cite{kosmulski2024allegro}. % Background
+El primer intento con SOA separó el código de los servicios, pero el frontend
+compartido seguía obligando a coordinar los lanzamientos
 \cite{ignasiak2015architecture}. % Switching from the old platform to the new one
+Con el proyecto Rubicon, Allegro apostó por microservicios para acelerar la
+entrega de cambios \cite{kosmulski2024allegro}. % Rubicon Rises
 
 \paragraph{3. Beneficios.}
-Notas: ciclos de lanzamiento independientes por servicio
-\cite{ignasiak2015architecture}. % Rubikon
-Crear un servicio pasó de una o dos semanas a minutos; es un dato de aprovisionamiento,
-no del tiempo de entrega de una funcionalidad
-\cite{kosmulski2024allegro}. % Takeaways
+Los equipos pudieron publicar cambios en sus servicios sin coordinar cada
+lanzamiento con el resto de la plataforma \cite{ignasiak2015architecture}.
+% Rubikon
+Allegro también reportó que crear un servicio pasó de tomar una o dos semanas
+a tomar minutos. Esa cifra mide la creación del servicio, no la entrega de
+una funcionalidad \cite{kosmulski2024allegro}. % Takeaways
 
 \paragraph{4. Desafío y respuesta.}
-Notas: separar los datos de la base SQL central exigió remodelar datos y operaciones
-transaccionales. Ejemplo: un servicio cambió de Cassandra a MongoDB en un sprint de
-dos semanas, por sus patrones de acceso y sin cambiar su API
-\cite{kosmulski2024allegro}. % No-ing SQL
-Contraste académico: cambios técnicos y organizativos iterativos
-\cite{michaelayas2023migration}; % Sección 1
-problemas de diseño y gestión de servicios observados en Stack Overflow
+Dividir el monolito obligó a rediseñar datos y operaciones transaccionales.
+En un servicio, Cassandra no se ajustaba bien a los patrones de acceso.
+El equipo la sustituyó por MongoDB en un sprint de dos semanas sin cambiar
+la API que usaban los clientes \cite{kosmulski2024allegro}. % No-ing SQL
+Ese ajuste ilustra el carácter iterativo de la migración descrito por Michael
+Ayas et al. \cite{michaelayas2023migration}. Wu et al. también documentan
+problemas de diseño y gestión de servicios en Stack Overflow
 \cite{wu2022microservices}. % Secciones I y IV
-Ejemplo posterior, si aporta al argumento: Allegro trasladó funciones de red
-de las bibliotecas a una malla con Envoy mediante adopción gradual
-\cite{jedrzejczyk2020mesh}. % The why; The status
 
 \paragraph{5. Aplicación al PFC.}
 Para el SGRA tomaría de Allegro la separación de responsabilidades entre
@@ -90,8 +88,8 @@ o escalar por separado las funciones de refuerzo.
 \pendiente{identificar el sistema, cómo lo conoces y qué evidencia observaste de que sus servicios se pueden desplegar por separado.}
 
 \paragraph{Declaración de uso de IA.}
-Se utilizó IA para organizar notas con citas, contrastar datos bibliográficos
-y preparar la plantilla de LaTeX. Revisar y actualizar esta declaración antes de entregar.
+Se utilizó IA como apoyo para contrastar datos bibliográficos, preparar la plantilla de
+LaTeX y proponer un borrador de los apartados del análisis.
 
 \begin{center}
   \IfFileExists{evidencias/allegro-anotada.png}{%
