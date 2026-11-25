@@ -75,7 +75,16 @@ de las bibliotecas a una malla con Envoy mediante adopción gradual
 \cite{jedrzejczyk2020mesh}. % The why; The status
 
 \paragraph{5. Aplicación al PFC.}
-\pendiente{decisión que adoptaría, qué no copiaría y por qué.}
+Para el SGRA tomaría de Allegro la separación de responsabilidades entre
+servicios \cite{ignasiak2015architecture}. Mantendría las solicitudes, sesiones
+y asistencias en el núcleo del SGRA y consultaría los datos académicos al SGA
+simulado mediante una API, sin acceder directamente a sus tablas, como propone el
+\href{https://github.com/Yukisan-uwo/PFC-SGRA/blob/main/docs/adr/ADR-001-estilo-arquitectura.md}{ADR-001}.
+No dividiría todo el núcleo en microservicios ni añadiría una malla como la de
+Allegro \cite{kosmulski2024allegro,jedrzejczyk2020mesh}: la
+\href{https://github.com/Yukisan-uwo/PFC-SGRA#ejecución-del-esqueleto}{demostración de E1}
+valida una consulta entre dos procesos, pero no muestra que haga falta desplegar
+o escalar por separado las funciones de refuerzo.
 
 \paragraph{Ejemplo de primera mano.}
 \pendiente{identificar el sistema, cómo lo conoces y qué evidencia observaste de que sus servicios se pueden desplegar por separado.}
